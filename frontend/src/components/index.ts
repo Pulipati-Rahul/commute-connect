@@ -39,5 +39,7 @@ export * from './navigation/Footer';
 export * from './layouts/AppLayout';
 export * from './layouts/DashboardLayout';
 export * from './layouts/AuthLayout';
+export * from './layouts/PublicLayout';
 
 export * from './ProtectedRoute';
+

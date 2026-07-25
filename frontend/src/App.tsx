@@ -24,6 +24,15 @@ const NotificationPage = React.lazy(() => import('./pages/notifications/Notifica
 const RideMapPage = React.lazy(() => import('./pages/rides/RideMap'));
 const AdminDashboardPage = React.lazy(() => import('./pages/admin/AdminDashboard'));
 
+
+// Public SEO Static Pages
+const About = React.lazy(() => import('./pages/About'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const Privacy = React.lazy(() => import('./pages/Privacy'));
+const Terms = React.lazy(() => import('./pages/Terms'));
+const FAQ = React.lazy(() => import('./pages/FAQ'));
+
+
 /**
  * Reusable full-screen skeleton fallback loader for lazy-loaded page route loads.
  */
@@ -176,11 +185,27 @@ export default function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
 
+            {/* Public SEO & Support Pages */}
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/faq" element={<FAQ />} />
+
+            {/* Support Redirect Fallbacks */}
+            <Route path="/careers" element={<Navigate to="/about" replace />} />
+            <Route path="/blog" element={<Navigate to="/about" replace />} />
+            <Route path="/cookies" element={<Navigate to="/privacy" replace />} />
+            <Route path="/help" element={<Navigate to="/faq" replace />} />
+            <Route path="/safety" element={<Navigate to="/terms" replace />} />
+            <Route path="/report" element={<Navigate to="/contact" replace />} />
+
             {/* Design Playground Sandbox */}
             <Route path="/playground" element={<PlaygroundPage />} />
 
             {/* Catch-all Redirect */}
             <Route path="*" element={<Navigate to="/" replace />} />
+
           </Routes>
         </Suspense>
       </AuthProvider>
