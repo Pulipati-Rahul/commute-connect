@@ -1,7 +1,8 @@
-import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
+import React, { createContext, useState, useEffect, useContext, useCallback, useRef } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase } from '../services/supabase';
 import { AuthService, UserProfile } from '../services/authService';
+import { useQueryClient } from '@tanstack/react-query';
 
 export interface AuthContextProps {
   user: User | null;
@@ -28,80 +29,74 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [requiresProfileSetup, setRequiresProfileSetup] = useState(false);
+  const queryClient = useQueryClient();
 
-  const refreshProfile = useCallback(async () => {
+  const loadedProfileUserIdRef = useRef<string | null>(null);
+  const fetchingProfileRef = useRef<string | null>(null);
+
+  const fetchProfileForUser = useCallback(async (currUser: User, force = false) => {
+    if (!force && loadedProfileUserIdRef.current === currUser.id) {
+      setLoading(false);
+      return;
+    }
+    if (fetchingProfileRef.current === currUser.id) {
+      return;
+    }
+    fetchingProfileRef.current = currUser.id;
+    setLoading(true);
     try {
       const dbProfile = await AuthService.getProfile();
       setProfile(dbProfile);
       setRequiresProfileSetup(false);
+      loadedProfileUserIdRef.current = currUser.id;
+      queryClient.setQueryData(['profile'], dbProfile);
     } catch (err: any) {
       if (err.response?.status === 404) {
         setProfile(null);
         setRequiresProfileSetup(true);
+        loadedProfileUserIdRef.current = currUser.id;
+        queryClient.setQueryData(['profile'], null);
       } else {
-        console.error('Failed to refresh profile:', err.message);
+        console.error('Failed to fetch profile:', err.message);
       }
+    } finally {
+      setLoading(false);
+      fetchingProfileRef.current = null;
     }
-  }, []);
+  }, [queryClient]);
+
+  const refreshProfile = useCallback(async () => {
+    if (user) {
+      await fetchProfileForUser(user, true);
+    }
+  }, [user, fetchProfileForUser]);
+
+  const clearAuthState = useCallback(() => {
+    setUser(null);
+    setProfile(null);
+    setRequiresProfileSetup(false);
+    loadedProfileUserIdRef.current = null;
+    fetchingProfileRef.current = null;
+    queryClient.setQueryData(['profile'], null);
+    queryClient.clear();
+  }, [queryClient]);
 
   // Set up Supabase auth listener
   useEffect(() => {
     let isMounted = true;
 
-    async function initializeSession() {
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session && isMounted) {
-          setUser(session.user);
-          // Sync database profile
-          try {
-            const dbProfile = await AuthService.getProfile();
-            setProfile(dbProfile);
-            setRequiresProfileSetup(false);
-          } catch (err: any) {
-            if (err.response?.status === 404) {
-              setProfile(null);
-              setRequiresProfileSetup(true);
-            }
-          }
-        }
-      } catch (err) {
-        console.error('Auth initialization error:', err);
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    initializeSession();
-
     // Subscribe to auth state transitions
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (!isMounted) return;
 
-      if (event === 'SIGNED_IN' && session) {
+      if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION' || event === 'TOKEN_REFRESHED') && session) {
         setUser(session.user);
-        setLoading(true);
-        try {
-          const dbProfile = await AuthService.getProfile();
-          setProfile(dbProfile);
-          setRequiresProfileSetup(false);
-        } catch (err: any) {
-          if (err.response?.status === 404) {
-            setProfile(null);
-            setRequiresProfileSetup(true);
-          }
-        } finally {
-          setLoading(false);
+        if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
+          await fetchProfileForUser(session.user);
         }
-      } else if (event === 'SIGNED_OUT') {
-        setUser(null);
-        setProfile(null);
-        setRequiresProfileSetup(false);
+      } else if (event === 'SIGNED_OUT' || (event === 'INITIAL_SESSION' && !session)) {
+        clearAuthState();
         setLoading(false);
-      } else if (event === 'TOKEN_REFRESHED' && session) {
-        setUser(session.user);
       }
     });
 
@@ -109,14 +104,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       isMounted = false;
       subscription.unsubscribe();
     };
-  }, []);
+  }, [fetchProfileForUser, clearAuthState]);
 
   const login = async (email: string, password: string) => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setLoading(false);
       throw error;
+    }
+    if (data.session) {
+      setUser(data.session.user);
+      await fetchProfileForUser(data.session.user);
     }
   };
 
@@ -138,6 +137,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
       throw error;
     }
+    clearAuthState();
+    setLoading(false);
   };
 
   const syncProfile = async (profileData: Omit<UserProfile, 'id' | 'email'>) => {
@@ -146,13 +147,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const dbProfile = await AuthService.registerProfile(profileData);
       setProfile(dbProfile);
       setRequiresProfileSetup(false);
+      if (user) {
+        loadedProfileUserIdRef.current = user.id;
+      }
+      queryClient.setQueryData(['profile'], dbProfile);
     } finally {
       setLoading(false);
     }
   };
 
   const sendPasswordReset = async (email: string) => {
-    // Suppresses email redirect url mappings in developer settings fallback
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     });
