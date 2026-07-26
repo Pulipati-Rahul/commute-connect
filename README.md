@@ -260,7 +260,6 @@ While building this project, I learned:
 
 **Pulipati Rahul**
 
-Diploma in Computer Science Engineering
 
 Full Stack Developer
 
