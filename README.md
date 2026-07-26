@@ -16,6 +16,32 @@ This project was built as a complete full-stack application to strengthen my ski
 
 ---
 
+# 📸 Screenshots
+
+<p align="center">
+  <img src="screenshots/01-dashboard.png" width="48%">
+  <img src="screenshots/02-find-rides.png" width="48%">
+</p>
+
+<p align="center">
+  <img src="screenshots/03-offer-ride.png" width="48%">
+  <img src="screenshots/04-bookings.png" width="48%">
+</p>
+
+<p align="center">
+  <img src="screenshots/05-messages.png" width="48%">
+  <img src="screenshots/06-profile.png" width="48%">
+</p>
+
+<p align="center">
+  <img src="screenshots/07-settings.png" width="48%">
+  <img src="screenshots/08-mobile.png" width="48%">
+</p>
+
+<p align="center">
+  <img src="screenshots/09-dark-mode.png" width="70%">
+</p>
+
 # ✨ Features
 
 ### 👤 Authentication
