@@ -269,7 +269,9 @@ Diploma in Computer Science Engineering
 Full Stack Developer
 
 GitHub:
-https://github.com/Rahul19347558865
+https://github.com/Pulipati-Rahul
+Linkedin:
+https://www.linkedin.com/in/pulipati-rahul-92a27940b
 
 ---
 
