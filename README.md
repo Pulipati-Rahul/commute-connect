@@ -16,40 +16,7 @@ This project was built as a complete full-stack application to strengthen my ski
 
 ---
 
-# 📸 Screenshots
 
-## Dashboard & Login
-
-<p align="center">
-  <img src="screenshots/01-home.png" width="48%">
-  <img src="screenshots/02-login.png" width="48%">
-</p>
-
-## Find Ride & Offer Ride
-
-<p align="center">
-  <img src="screenshots/03-find-ride.png" width="48%">
-  <img src="screenshots/04-offer-ride.png" width="48%">
-</p>
-
-## Bookings & Profile
-
-<p align="center">
-  <img src="screenshots/05-bookings.png" width="48%">
-  <img src="screenshots/07-profile.png" width="48%">
-</p>
-
-## Settings
-
-<p align="center">
-  <img src="screenshots/08-settings.png" width="48%">
-</p>
-
-## Dark Mode
-
-<p align="center">
-  <img src="screenshots/09-dark-mode.png" width="70%">
-</p>
 
 # ✨ Features
 
@@ -133,18 +100,38 @@ This project was built as a complete full-stack application to strengthen my ski
 
 # 📸 Screenshots
 
-You can add screenshots here.
+## Dashboard & Login
 
-Example:
+<p align="center">
+  <img src="screenshots/01-home.png" width="48%">
+  <img src="screenshots/02-login.png" width="48%">
+</p>
 
-- Login Page
-- Dashboard
-- Find Ride
-- Offer Ride
-- Profile Page
-- Mobile View
+## Find Ride & Offer Ride
 
----
+<p align="center">
+  <img src="screenshots/03-find-ride.png" width="48%">
+  <img src="screenshots/04-offer-ride.png" width="48%">
+</p>
+
+## Bookings & Profile
+
+<p align="center">
+  <img src="screenshots/05-bookings.png" width="48%">
+  <img src="screenshots/07-profile.png" width="48%">
+</p>
+
+## Settings
+
+<p align="center">
+  <img src="screenshots/08-settings.png" width="48%">
+</p>
+
+## Dark Mode
+
+<p align="center">
+  <img src="screenshots/09-dark-mode.png" width="70%">
+</p>
 
 # 📂 Project Structure
 
