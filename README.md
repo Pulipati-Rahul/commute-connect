@@ -19,23 +19,23 @@ This project was built as a complete full-stack application to strengthen my ski
 # 📸 Screenshots
 
 <p align="center">
-  <img src="screenshots/01-dashboard.png" width="48%">
-  <img src="screenshots/02-find-rides.png" width="48%">
+  <img src="screenshots/01-home.png" width="48%">
+  <img src="screenshots/02-login.png" width="48%">
 </p>
 
 <p align="center">
-  <img src="screenshots/03-offer-ride.png" width="48%">
-  <img src="screenshots/04-bookings.png" width="48%">
+  <img src="screenshots/03-find-ride.png" width="48%">
+  <img src="screenshots/04-offer-ride.png" width="48%">
 </p>
 
 <p align="center">
-  <img src="screenshots/05-messages.png" width="48%">
-  <img src="screenshots/06-profile.png" width="48%">
+  <img src="screenshots/05-bookings.png" width="48%">
+  <img src="screenshots/06-messages.png width="48%">
 </p>
 
 <p align="center">
-  <img src="screenshots/07-settings.png" width="48%">
-  <img src="screenshots/08-mobile.png" width="48%">
+  <img src="screenshots/07-profile.png" width="48%">
+  <img src="screenshots/08-settings.png" width="48%">
 </p>
 
 <p align="center">
@@ -163,7 +163,7 @@ commute-connect
 ## Clone the repository
 
 ```bash
-git clone https//:commute-connect.git
+git clone https://github.com/Pulipati-Rahul/commute-connect.git
 ```
 
 ## Navigate into the project
@@ -182,7 +182,7 @@ npm install
 ## Install backend dependencies
 
 ```bash
-cd ../backend
+cd backend
 npm install
 ```
 
@@ -270,6 +270,7 @@ Full Stack Developer
 
 GitHub:
 https://github.com/Pulipati-Rahul
+
 Linkedin:
 https://www.linkedin.com/in/pulipati-rahul-92a27940b
 
