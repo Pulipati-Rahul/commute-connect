@@ -269,7 +269,7 @@ LinkedIn:
 https://www.linkedin.com/in/pulipati-rahul-92a27940b
 
 Portfolio:
-https://pulipatirahul.vercel.app/
+https://pulipatirahul.vercel.app
 
 ---
 
