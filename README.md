@@ -260,19 +260,21 @@ While building this project, I learned:
 
 **Pulipati Rahul**
 
-
 Full Stack Developer
 
 GitHub:
 https://github.com/Pulipati-Rahul
 
-Linkedin:
+LinkedIn:
 https://www.linkedin.com/in/pulipati-rahul-92a27940b
+
+Portfolio:
+https://pulipatirahul.vercel.app/
 
 ---
 
 # ⭐ Support
 
-If you found this project interesting, consider giving it a ⭐ on GitHub.
+If you found this project helpful, consider giving it a ⭐ on GitHub.
 
-It motivates me to keep building and improving projects.
+It motivates me to continue building high-quality projects.
