@@ -2,7 +2,7 @@
 
 A modern full-stack ride-sharing web application built for students and working professionals to find, offer, and manage daily commute rides in a simple, secure, and user-friendly way.
 
-🔗 **Live Demo:** https://commute-connect-neon.vercel.app
+🔗 **Live Demo:** https://commuteconnect.vercel.app
 
 ---
 
@@ -220,7 +220,7 @@ http://localhost:5173
 
 Frontend
 
-https://commute-connect-neon.vercel.app
+https://commuteconnect.vercel.app
 
 Backend
 
@@ -266,7 +266,7 @@ While building this project, I learned:
 
 Diploma in Computer Science Engineering
 
-Aspiring Full Stack Developer
+Full Stack Developer
 
 GitHub:
 https://github.com/Rahul19347558865
