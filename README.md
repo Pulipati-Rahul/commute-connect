@@ -1,5 +1,9 @@
 # 🚗 Commute Connect
 
+<p align="center">
+  <img src="screenshots/01-home.png" width="100%">
+</p>
+
 A modern full-stack ride-sharing web application built for students and working professionals to find, offer, and manage daily commute rides in a simple, secure, and user-friendly way.
 
 🔗 **Live Demo:** https://commuteconnect.vercel.app
