@@ -102,38 +102,33 @@ This project was built as a complete full-stack application to strengthen my ski
 
 ### 🏠 Dashboard & Login
 
-<p align="center">
-  <img src="screenshots/01-home.png" width="48%">
-  <img src="screenshots/02-login.png" width="48%">
-</p>
+| Dashboard | Login |
+|-----------|-------|
+| ![](screenshots/01-home.png) | ![](screenshots/02-login.png) |
 
 ---
 
 ### 🚗 Find Ride & Offer Ride
 
-<p align="center">
-  <img src="screenshots/03-find-ride.png" width="48%">
-  <img src="screenshots/04-offer-ride.png" width="48%">
-</p>
+| Find Ride | Offer Ride |
+|-----------|------------|
+| ![](screenshots/03-find-ride.png) | ![](screenshots/04-offer-ride.png) |
 
 ---
 
 ### 📅 Bookings & Profile
 
-<p align="center">
-  <img src="screenshots/05-bookings.png" width="48%">
-  <img src="screenshots/07-profile.png" width="48%">
-</p>
+| Bookings | Profile |
+|----------|---------|
+| ![](screenshots/05-bookings.png) | ![](screenshots/07-profile.png) |
 
 ---
 
-### ⚙️ Settings & 🌙 Dark Mode
+### ⚙️ Settings & Dark Mode
 
-<p align="center">
-  <img src="screenshots/08-settings.png" width="48%">
-  <img src="screenshots/09-dark-mode.png" width="48%">
-</p>
-
+| Settings | Dark Mode |
+|----------|-----------|
+| ![](screenshots/08-settings.png) | ![](screenshots/09-dark-mode.png) |
 ---
 
 # 📂 Project Structure
